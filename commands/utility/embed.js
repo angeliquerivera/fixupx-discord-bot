@@ -29,27 +29,31 @@ module.exports = {
           option.setName("url").setDescription("tiktok url")
         )
     ),
-    
-    const exampleEmbed = new EmbedBuilder()
-    .setColor(0x0099FF)
-    .setTitle('Some title')
-    .setURL('https://discord.js.org/')
-    .setAuthor({ name: 'Some name', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
-    .setDescription('Some description here')
-    .setThumbnail('https://i.imgur.com/AfFp7pu.png')
-    .addFields(
-      { name: 'Regular field title', value: 'Some value here' },
-      { name: '\u200B', value: '\u200B' },
-      { name: 'Inline field title', value: 'Some value here', inline: true },
-      { name: 'Inline field title', value: 'Some value here', inline: true },
-    )
-    .addFields({ name: 'Inline field title', value: 'Some value here', inline: true })
-    .setImage('https://i.imgur.com/AfFp7pu.png')
-    .setTimestamp()
-    .setFooter({ text: 'Some footer text here', iconURL: 'https://i.imgur.com/AfFp7pu.png' }),
-  
-  channel.send({ embeds: [exampleEmbed] }),
-    
+
+  async execute(interaction) {
+    const embed = new EmbedBuilder()
+      .setColor(0x0099ff)
+      .setTitle("EmbedLink")
+      .setURL("")
+      .setDescription("Some description here")
+      .setImage("")
+      .setTimestamp(Date.now())
+      .setFooter({
+        text: "Some footer text here",
+        iconURL: "https://i.imgur.com/AfFp7pu.png",
+      });
+
+    let twitterUrl = new URL("https://www.vxtwitter.com/");
+    let instagramUrl = new URL("https://www.ddinstagram.com/");
+    let params1 = new URLSearchParams(twitterUrl.search);
+    let params2 = new URLSearchParams(instagramUrl.search);
+
+    console.log(params1.getAll());
+    console.log(params2.getAll());
+
+    await interaction.reply({ embeds: [embed] });
+  },
+
   //
   //
   // .addChoices(
@@ -64,20 +68,20 @@ module.exports = {
   //   option.setName("tiktok").setDescription("tiktok link posted")
   // ),
 
-  async execute(interaction) {
-    if (interaction.options.getSubcommand() === "twitter") {
-      const twitter = interaction.options.getString("url");
+  // async execute(interaction) {
+  //   if (interaction.options.getSubcommand() === "twitter") {
+  //     const twitter = interaction.options.getString("url");
 
-      if (twitter) {
-        await interaction.reply(`https://fixup{url.params}`);
-      }
-    } else if (interaction.options.getSubcommand() === "instagram") {
-      const instagram = interaction.options.getString("url");
-      if (instagram) {
-        await interaction.reply(`https://dd{url.params}`);
-      }
-    } else {
-      await interaction.reply(`https://vx{url.params}`);
-    }
-  },
+  //     if (twitter) {
+  //       await interaction.reply(`https://fixup{url.params}`);
+  //     }
+  //   } else if (interaction.options.getSubcommand() === "instagram") {
+  //     const instagram = interaction.options.getString("url");
+  //     if (instagram) {
+  //       await interaction.reply(`https://dd{url.params}`);
+  //     }
+  //   } else {
+  //     await interaction.reply(`https://vx{url.params}`);
+  //   }
+  // },
 };
