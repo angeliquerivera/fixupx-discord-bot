@@ -6,19 +6,30 @@ module.exports = {
     .setName("embed")
     .setDescription("embeds the link given")
     .addSubcommand((subcommand) =>
-      subcommand.setName("twitter").setDescription("twitter site")
+      subcommand
+        .setName("twitter")
+        .setDescription("twitter site")
+        .addStringOption((option) =>
+          option.setName("url").setDescription("twitter url")
+        )
     )
     .addSubcommand((subcommand) =>
-      subcommand.setName("instagram").setDescription("instagram site")
+      subcommand
+        .setName("instagram")
+        .setDescription("instagram site")
+        .addStringOption((option) =>
+          option.setName("url").setDescription("ig url")
+        )
     )
 
     .addSubcommand((subcommand) =>
-      subcommand.setName("tiktok").setDescription("tiktok url")
+      subcommand
+        .setName("tiktok")
+        .setDescription("tiktok site")
+        .addStringOption((option) =>
+          option.setName("url").setDescription("tiktok url")
+        )
     ),
-
-  async execute(interaction) {
-    await interaction.reply("embed");
-  },
 };
 
 // async execute(interaction) {
