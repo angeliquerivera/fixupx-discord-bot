@@ -1,4 +1,4 @@
-// const { EmbedBuilder } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
@@ -30,20 +30,66 @@ module.exports = {
           option.setName("url").setDescription("tiktok url")
         )
     ),
+  async execute(interaction) {
+    try {
+      let finalUrl = "https://";
+
+      // Grab the url subcommand string
+      const currUrlType = interaction.options.getSubcommand();
+
+      // Grab the path after the .com/, regardless of domain
+      const currUrlPath = interaction.options
+        .getString("url")
+        .split(".com/")[1];
+
+      // Build the final URL using the correct preview enabled website,
+      // adding the URL path at the end
+      switch (currUrlType) {
+        case "twitter":
+          finalUrl += `fixupx.com/${currUrlPath}`;
+          break;
+        case "instagram":
+          finalUrl += `ddinstagram.com/${currUrlPath}`;
+          break;
+        case "tiktok":
+          finalUrl += `vxtiktok.com/${currUrlPath}`;
+          break;
+        default:
+          finalUrl += `google.com/you+done+fucked+up`;
+      }
+
+      <meta
+        content='(3) PEGGYx 🕯️🖤【HORROR VTUBER】 on X: "white desert.......  🔪 
+#yumenikki #ゆめにっき #PEGGYxART https://t.co/GKA0IQw6Uw" / X'
+        property="og:title"
+        data-rh="true"
+      ></meta>;
+
+      /**
+       * Build the embed
+       * - author.name: og:site_name
+       * - URL: finalUrl
+       * - title: og:title
+       * - description: og:description
+       * - image: og:image
+       *
+       * Continue from here:
+       * https://github.com/FixTweet/FxTwitter/blob/main/src/render/video.ts
+       */
+      // Build the embed
+
+      const embed = new EmbedBuilder()
+        .setTitle(
+          `(3) PEGGYx 🕯️🖤【HORROR VTUBER】 on X: &quot;white desert.......  🔪 
+#yumenikki #ゆめにっき #PEGGYxART https://t.co/GKA0IQw6Uw&quot; / X`
+        )
+        .setURL(finalUrl);
+
+      // Respond with the embed
+      await interaction.reply({ embeds: [embed] });
+    } catch (e) {
+      // Report the error
+      console.log("Something went wrong: ", e);
+    }
+  },
 };
-
-// async execute(interaction) {
-//   const embed = new EmbedBuilder()
-//     .setColor(0x0099ff)
-//     .setTitle("EmbedLink")
-//     .setURL("https://ddinstagram.com/", "https://fixupx.com")
-//     .setDescription("Some description here")
-//     .setImage("")
-//     .setTimestamp(Date.now())
-//     .setFooter({
-//       text: "Some footer text here",
-//       iconURL: "https://i.imgur.com/AfFp7pu.png",
-//     });
-
-//   await interaction.reply({ embeds: [embed] });
-// },
