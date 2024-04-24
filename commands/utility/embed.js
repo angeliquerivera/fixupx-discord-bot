@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require("discord.js");
+// const { EmbedBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
@@ -58,12 +58,12 @@ module.exports = {
           finalUrl += `google.com/you+done+fucked+up`;
       }
 
-      <meta
-        content='(3) PEGGYx 🕯️🖤【HORROR VTUBER】 on X: "white desert.......  🔪 
-#yumenikki #ゆめにっき #PEGGYxART https://t.co/GKA0IQw6Uw" / X'
-        property="og:title"
-        data-rh="true"
-      ></meta>;
+      //       <meta
+      //         content='(3) PEGGYx 🕯️🖤【HORROR VTUBER】 on X: "white desert.......  🔪
+      // #yumenikki #ゆめにっき #PEGGYxART https://t.co/GKA0IQw6Uw" / X'
+      //         property="og:title"
+      //         data-rh="true"
+      //       ></meta>;
 
       /**
        * Build the embed
@@ -78,15 +78,15 @@ module.exports = {
        */
       // Build the embed
 
-      const embed = new EmbedBuilder()
-        .setTitle(
-          `(3) PEGGYx 🕯️🖤【HORROR VTUBER】 on X: &quot;white desert.......  🔪 
-#yumenikki #ゆめにっき #PEGGYxART https://t.co/GKA0IQw6Uw&quot; / X`
-        )
-        .setURL(finalUrl);
+      //       const embed = new EmbedBuilder()
+      //         .setTitle(
+      //           `(3) PEGGYx 🕯️🖤【HORROR VTUBER】 on X: &quot;white desert.......  🔪
+      // #yumenikki #ゆめにっき #PEGGYxART https://t.co/GKA0IQw6Uw&quot; / X`
+      //         )
+      //         .setURL(finalUrl);
 
       // Respond with the embed
-      await interaction.reply({ embeds: [embed] });
+      await interaction.reply(finalUrl);
     } catch (e) {
       // Report the error
       console.log("Something went wrong: ", e);
