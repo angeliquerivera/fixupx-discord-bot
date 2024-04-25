@@ -1,9 +1,10 @@
+const { EmbedBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("embed")
-    .setDescription("embeds the link given")
+    .setName("fancy")
+    .setDescription("embeds the link given with EmbedBuilder")
     .addSubcommand((subcommand) =>
       subcommand
         .setName("twitter")
@@ -54,9 +55,36 @@ module.exports = {
           finalUrl += `vxtiktok.com/${currUrlPath}`;
           break;
         default:
-          finalUrl += `google.com/`;
+          finalUrl += `google.com/you+done+fucked+up`;
       }
-      await interaction.reply(finalUrl);
+
+      //       <meta
+      //         content='(3) PEGGYx 🕯️🖤【HORROR VTUBER】 on X: "white desert.......  🔪
+      // #yumenikki #ゆめにっき #PEGGYxART https://t.co/GKA0IQw6Uw" / X'
+      //         property="og:title"
+      //         data-rh="true"
+      //       ></meta>;
+
+      /**
+       * Build the embed
+       * - author.name: og:site_name
+       * - URL: finalUrl
+       * - title: og:title
+       * - description: og:description
+       * - image: og:image
+       *
+       * Continue from here:
+       * https://github.com/FixTweet/FxTwitter/blob/main/src/render/video.ts
+       */
+      // Build the embed
+
+      const prettierEmbed = new EmbedBuilder()
+        .setColor(0x0099ff)
+        .setTitle("Fancier Look")
+        .setURL(finalUrl);
+
+      // Respond with the embed
+      await interaction.reply(prettierEmbed);
     } catch (e) {
       // Report the error
       console.log("Something went wrong: ", e);
