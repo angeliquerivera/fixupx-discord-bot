@@ -2,7 +2,6 @@ const {
   SlashCommandBuilder,
   EmbedBuilder,
   PermissionsBitField,
-  ChannelType,
 } = require("discord.js");
 const trigger = require("../../schemas/triggerSchema");
 
@@ -75,9 +74,8 @@ module.exports = {
       )
         return await sendMessage(`You don't have perms to use this!`);
     }
-
     const { options } = interaction;
-    const sub = options.getSubCommand();
+    const sub = options.getSubcommand;
 
     var globalData = await trigger.find({ Guild: interaction.guild.id });
     var data;
